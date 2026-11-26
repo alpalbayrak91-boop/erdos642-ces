@@ -1,0 +1,126 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "The Chen-Erdős-Staton bound for Erdős Problem 642"
+  description: >-
+    Let f(n) be the maximal number of edges of a graph on n vertices in which
+    every cycle has more vertices than chords. Erdős Problem 642 (Hamburger and
+    Szegedy) asks whether f(n) = O(n); this is open. This project proves the
+    bound f(n) = O(n^(3/2)) attributed to Chen, Erdős and Staton, in the explicit
+    form f(n) <= 2 (floor(sqrt n) + 1) n, by a longest path argument.
+  authors:
+    - "Alp Albayrak"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Alp Albayrak"
+
+classification:
+  arxiv: ["math.CO"]
+  msc2020: ["05C35", "05C38"]
+
+sources:
+  - title: "Proof of a conjecture of Bollobás on nested cycles"
+    authors:
+      - "Guantao Chen"
+      - "Paul Erdős"
+      - "William Staton"
+    id: "J. Combin. Theory Ser. B 66 (1996), 38-43"
+    type: "article"
+    relationship: "independently-proves"
+    note: >-
+      erdosproblems.com/642 and formal-conjectures attribute the bound
+      f(n) << n^(3/2) to this paper. The proof formalized here is a longest path
+      rotation argument written without consulting the paper, and has not been
+      compared with the paper's proof.
+    license: "unknown"
+    author_endorsement: "not-contacted"
+  - title: "FormalConjectures/ErdosProblems/642.lean in google-deepmind/formal-conjectures"
+    id: "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/ErdosProblems/642.lean"
+    type: "formalization"
+    relationship: "other"
+    note: >-
+      The two definitions and the statement of the asymptotic theorem are copied
+      verbatim from this file, where the theorem
+      Erdos642.erdos_642.variants.upper_bound_n_pow_three_halves is stated
+      without proof.
+    license: "Apache-2.0"
+    author_endorsement: "not-contacted"
+  - title: "Erdős Problem 642"
+    contributors:
+      - name: "Thomas Bloom"
+        role: "maintainer of erdosproblems.com"
+    id: "https://www.erdosproblems.com/642"
+    type: "web page"
+    relationship: "background"
+    license: "unknown"
+    author_endorsement: "n/a"
+
+related_formalizations: []
+
+status:
+  scope: >-
+    Proved: for every n, a graph on Fin n in which every cycle has more vertices
+    than chords has at most 2 (floor(sqrt n) + 1) n edges, and hence
+    f(n) = O(n^(3/2)). Not formalized: the open question f(n) = O(n), the bound
+    n (log n)^8 of Draganić, Methuku, Munhá Correia and Sudakov, and lower
+    bounds for f(n).
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude (Anthropic)"]
+      framework: "Claude Code"
+      tool_setup: >-
+        An AI coding agent chose the proof strategy, wrote all Lean source and
+        iterated against the Lean compiler. No human edited the Lean source.
+      cost:
+        wall_time: "about two hours"
+        spend_usd: "not tracked"
+        hardware: "one cloud virtual machine, used for compilation"
+      prompting_notes: >-
+        The human asked the agent to work on formal proofs of solved statements
+        in formal-conjectures. The choice of this statement, the proof and the
+        code are the agent's.
+  spend_usd: "not tracked"
+  notes: >-
+    The proof was produced by an AI agent in one session and checked by Lean.
+    The human author directed the work and is responsible for this repository,
+    but has not independently reviewed the mathematics line by line.
+
+fidelity:
+  divergences: >-
+    The definitions and the asymptotic statement are verbatim from
+    formal-conjectures. The explicit bound is an additional statement, not taken
+    from a source. The argument is not claimed to be the one in the cited paper.
+
+review:
+  status: "self-assessed"
+  reviewers:
+    - "none"
+  notes: >-
+    Statements were compared textually with formal-conjectures at the commit
+    cited above. The proof modules were replayed with leanchecker, and both
+    theorems depend only on propext, Classical.choice and Quot.sound. No human
+    mathematical review has been done.
+
+alignment:
+  namespace: "Erdos642"
+  statements:
+    - source: "Chen, Erdős and Staton: f(n) << n^(3/2), as stated in formal-conjectures"
+      lean: "Erdos642.erdos_642.variants.upper_bound_n_pow_three_halves"
+      module: "Solution"
+      status: "proved"
+      note: "Statement identical to the formal-conjectures declaration of the same name."
+    - source: "Explicit form of the same bound"
+      lean: "Erdos642.maxEdges_le_two_mul_sqrt_succ_mul"
+      module: "Solution"
+      status: "proved"
+      note: "f(n) <= 2 (floor(sqrt n) + 1) n for every n; the asymptotic statement follows."
+
+acknowledgements: >-
+  Mathlib; google-deepmind/formal-conjectures for the statement; Thomas Bloom's
+  erdosproblems.com.

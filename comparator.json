@@ -1,0 +1,14 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos642.maxEdges_le_two_mul_sqrt_succ_mul",
+    "Erdos642.erdos_642.variants.upper_bound_n_pow_three_halves"
+  ],
+  "definition_names": [
+    "Erdos642.CyclesHaveMoreVerticesThanChords",
+    "Erdos642.maxEdges"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+  "enable_nanoda": true
+}
