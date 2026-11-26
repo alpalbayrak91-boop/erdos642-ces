@@ -7,6 +7,8 @@ module
 public import Mathlib.Combinatorics.SimpleGraph.Walk.Chord
 public import Mathlib.Combinatorics.SimpleGraph.Paths
 public import Mathlib.Combinatorics.SimpleGraph.Finite
+public import Mathlib.Analysis.Asymptotics.Defs
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 @[expose] public section
 
@@ -16,6 +18,8 @@ public import Mathlib.Combinatorics.SimpleGraph.Finite
 The definitions are those of `FormalConjectures/ErdosProblems/642.lean` in
 `google-deepmind/formal-conjectures`, copied verbatim.
 -/
+
+open Filter
 
 namespace Erdos642
 
